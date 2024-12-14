@@ -1,19 +1,19 @@
 local function map(mode, lhs, rhs)
-    vim.keymap.set(mode, lhs, rhs, { silent = true }) -- 定义键映射函数，默认为静音模式
+	vim.keymap.set(mode, lhs, rhs, { silent = true }) -- 定义键映射函数，默认为静音模式
 end
 
 -- 安全加载 Telescope 插件
 local status, telescope = pcall(require, "telescope.builtin")
 if status then
-    -- Telescope 快捷键映射
-    map("n", "<leader>ff", telescope.find_files) -- 查找文件
-    map("n", "<leader>fg", telescope.live_grep) -- 全局搜索
-    map("n", "<leader>fb", telescope.buffers) -- 列出所有缓冲区
-    map("n", "<leader>fh", telescope.help_tags) -- 查找帮助标签
-    map("n", "<leader>fs", telescope.git_status) -- 查看 Git 状态
-    map("n", "<leader>fc", telescope.git_commits) -- 查看 Git 提交历史
+	-- Telescope 快捷键映射
+	map("n", "<leader>ff", telescope.find_files) -- 查找文件
+	map("n", "<leader>fg", telescope.live_grep) -- 全局搜索
+	map("n", "<leader>fb", telescope.buffers) -- 列出所有缓冲区
+	map("n", "<leader>fh", telescope.help_tags) -- 查找帮助标签
+	map("n", "<leader>fs", telescope.git_status) -- 查看 Git 状态
+	map("n", "<leader>fc", telescope.git_commits) -- 查看 Git 提交历史
 else
-    print("Telescope not found") -- 如果插件未找到，打印提示信息
+	print("Telescope not found") -- 如果插件未找到，打印提示信息
 end
 
 -- 保存文件
@@ -40,6 +40,8 @@ map("n", "<S-TAB>", "<CMD>bprevious<CR>") -- 切换到上一个缓冲区
 -- 终端操作
 map("n", "<leader>th", "<CMD>ToggleTerm size=10 direction=horizontal<CR>") -- 水平终端
 map("n", "<leader>tv", "<CMD>ToggleTerm size=80 direction=vertical<CR>") -- 垂直终端
+map("t", "<Esc>", [[<C-\><C-n>]]) --退出到普通模式
+map("t", "<leader>q", [[<C-\><C-n>:q<CR>]]) --关闭终端
 
 -- Markdown 预览
 -- map("n", "<leader>m", "<CMD>MarkdownPreview<CR>") -- 启动 Markdown 预览
