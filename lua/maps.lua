@@ -60,4 +60,4 @@ map("n", "<C-Up>", "<C-w>+") -- 向上调整窗口大小
 map("n", "<C-Down>", "<C-w>-") -- 向下调整窗口大小
 
 -- LazyGit 集成
-map("n", "<leader>lg", "<CMD>LazyGit<CR>") -- 打开 LazyGit 界面
+-- map("n", "<leader>lg", "<CMD>LazyGit<CR>") -- 打开 LazyGit 界面

@@ -156,12 +156,12 @@ return require("packer").startup(function(use)
 	})
 
 	-- lazygit gui工具
-	use({
-		"kdheepak/lazygit.nvim",
-		config = function()
-			require("configs.lazygit") -- 使用自定义的 lazygit 配置
-		end,
-	})
+	--	use({
+	--	    "kdheepak/lazygit.nvim",
+	--	    config = function()
+	--		    require("configs.lazygit") -- 使用自定义的 lazygit 配置
+	--	    end,
+	--  })
 
 	-- 背景透明插件
 	use({

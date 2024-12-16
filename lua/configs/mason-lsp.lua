@@ -23,5 +23,6 @@ masonlsp.setup({
         "gopls",    -- Go 语言服务器
         "tailwindcss",
         "clangd", -- 添加 clangd
+        "yamlls",
     },
 })

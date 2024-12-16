@@ -1,4 +1,16 @@
+do 
+    local ok, proto_map = pcall(function() return vim.lsp.protocol._request_name_to_capability end)
+    if ok and proto_map then
+        vim.lsp._request_name_to_capability = proto_map
+    end 
+end
+
+
+
+
+
 local status, nls = pcall(require, "null-ls")
+
 
 if not status then
     return
@@ -21,6 +33,9 @@ nls.setup({
         }),
         fmt.stylua,
         fmt.rustfmt,
+        fmt.black.with({
+            extra_args = { "--line-length", "88" },
+        }),
 
         -- Diagnostics
         dgn.eslint_d,
