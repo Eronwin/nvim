@@ -14,14 +14,14 @@ end
 masonlsp.setup({
     automatic_installation = true,
     ensure_installed = {
-        "cssls",
-        "eslint",
-        "html",
-        "jsonls",
-        "ts_ls",  -- 替换 tsserver 为 ts_ls
-        "pyright",
-        "gopls",    -- Go 语言服务器
-        "tailwindcss",
-        "clangd", -- 添加 clangd
+--        "cssls",
+--        "eslint",
+--        "html",
+--        "jsonls",
+--        "ts_ls",  -- 替换 tsserver 为 ts_ls
+--        "pyright",
+--        "gopls",    -- Go 语言服务器
+--        "tailwindcss",
+--        "clangd", -- 添加 clangd
     },
 })
