@@ -12,25 +12,16 @@ local on_attach = function(client, bufnr)
 	map("n", "<leader>rn", vim.lsp.buf.rename)
 	map("n", "<leader>ca", vim.lsp.buf.code_action)
 	map("n", "<leader>lf", function()
-		vim.lsp.buf.format({ async = false })
+		require("conform").format({
+			bufnr = bufnr,
+			timeout_ms = 1000,
+			lsp_fallback = true,
+		})
 	end)
 	map("n", "[d", vim.diagnostic.goto_prev)
 	map("n", "]d", vim.diagnostic.goto_next)
 	map("n", "<leader>ld", vim.diagnostic.open_float)
 	map("n", "<leader>lq", vim.diagnostic.setloclist)
-
-	-- 如果 LSP 服务器支持格式化功能，则在保存时自动格式化
-	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = vim.api.nvim_create_augroup("Format", { clear = true }),
-			buffer = bufnr,
-			callback = function()
-				vim.lsp.buf.format({
-					async = false,
-				}) -- 调用 LSP 格式化功能
-			end,
-		})
-	end
 end
 
 -- 设置 LSP 客户端的能力，例如补全功能

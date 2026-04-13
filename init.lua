@@ -1,4 +1,13 @@
 
+if vim.islist then
+	rawset(vim, "tbl_islist", vim.islist)
+end
+
+if vim.iter then
+	rawset(vim, "tbl_flatten", function(t)
+		return vim.iter(t):flatten(math.huge):totable()
+	end)
+end
 
 require("settings")
 require("plugins")
