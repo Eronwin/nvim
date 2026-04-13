@@ -1,10 +1,27 @@
-# kekao 的 Neovim 配置
+<h1 align="center">kekao 的 Neovim 配置</h1>
 
-> 一套偏 Lua 工作流的 Neovim 配置。
->
-> 基础项目：[Neovim](https://github.com/neovim/neovim)  
-> 更新日期：`2026-04-13`  
-> 已由 Codex 优化
+<p align="center">
+  一套偏 Lua 工作流的 Neovim 配置。
+</p>
+
+<p align="center">
+  <a href="./README.md">English</a> |
+  <a href="./README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <img alt="Neovim" src="https://img.shields.io/badge/Neovim-0.11+-57A143?logo=neovim&logoColor=white">
+  <img alt="Lua" src="https://img.shields.io/badge/Lua-config-2C2D72?logo=lua&logoColor=white">
+  <img alt="Packer" src="https://img.shields.io/badge/Plugin_Manager-packer.nvim-1F6FEB">
+  <img alt="LSP" src="https://img.shields.io/badge/LSP-mason%20%2B%20lspconfig-0A7EA4">
+  <img alt="Codex" src="https://img.shields.io/badge/AI-Codex-111111">
+</p>
+
+<p align="center">
+  基础项目：<a href="https://github.com/neovim/neovim">Neovim</a> ·
+  更新日期：<code>2026-04-13</code> ·
+  已由 Codex 优化
+</p>
 
 | 项目 | 值 |
 | --- | --- |

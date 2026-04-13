@@ -1,10 +1,27 @@
-# kekao's Neovim Config
+<h1 align="center">kekao's Neovim Config</h1>
 
-> Neovim dotfiles tuned for a Lua-first workflow.
->
-> Base project: [Neovim](https://github.com/neovim/neovim)  
-> Updated: `2026-04-13`  
-> Optimized with Codex
+<p align="center">
+  Neovim dotfiles for a Lua-first workflow.
+</p>
+
+<p align="center">
+  <a href="./README.md">English</a> |
+  <a href="./README.zh-CN.md">简体中文</a>
+</p>
+
+<p align="center">
+  <img alt="Neovim" src="https://img.shields.io/badge/Neovim-0.11+-57A143?logo=neovim&logoColor=white">
+  <img alt="Lua" src="https://img.shields.io/badge/Lua-config-2C2D72?logo=lua&logoColor=white">
+  <img alt="Packer" src="https://img.shields.io/badge/Plugin_Manager-packer.nvim-1F6FEB">
+  <img alt="LSP" src="https://img.shields.io/badge/LSP-mason%20%2B%20lspconfig-0A7EA4">
+  <img alt="Codex" src="https://img.shields.io/badge/AI-Codex-111111">
+</p>
+
+<p align="center">
+  Base project: <a href="https://github.com/neovim/neovim">Neovim</a> ·
+  Updated: <code>2026-04-13</code> ·
+  Optimized with Codex
+</p>
 
 | Item | Value |
 | --- | --- |
