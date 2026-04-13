@@ -1,70 +1,122 @@
 local function map(mode, lhs, rhs)
-	vim.keymap.set(mode, lhs, rhs, { silent = true }) -- 定义键映射函数，默认为静音模式
+	vim.keymap.set(mode, lhs, rhs, { silent = true })
 end
 
--- 安全加载 Telescope 插件
+local flash_status, flash = pcall(require, "flash")
+local function in_git_repo()
+	local cwd = vim.fn.expand("%:p:h")
+	if cwd == "" then
+		cwd = vim.loop.cwd()
+	end
+
+	return vim.fn.system({
+		"git",
+		"-C",
+		cwd,
+		"rev-parse",
+		"--is-inside-work-tree",
+	}) ~= ""
+		and vim.v.shell_error == 0
+end
+
+-- Telescope
 local status, telescope = pcall(require, "telescope.builtin")
 if status then
-	-- Telescope 快捷键映射
-	map("n", "<leader>ff", telescope.find_files) -- 查找文件
-	map("n", "<leader>fg", telescope.live_grep) -- 全局搜索
-	map("n", "<leader>fb", telescope.buffers) -- 列出所有缓冲区
-	map("n", "<leader>fh", telescope.help_tags) -- 查找帮助标签
-	map("n", "<leader>fs", telescope.git_status) -- 查看 Git 状态
-	map("n", "<leader>fc", telescope.git_commits) -- 查看 Git 提交历史
+	local function git_status()
+		if not in_git_repo() then
+			vim.notify("Current file is not inside a Git repository", vim.log.levels.WARN)
+			return
+		end
+		telescope.git_status()
+	end
+
+	local function git_commits()
+		if not in_git_repo() then
+			vim.notify("Current file is not inside a Git repository", vim.log.levels.WARN)
+			return
+		end
+		telescope.git_commits()
+	end
+
+	map("n", "<leader>ff", telescope.find_files)
+	map("n", "<leader>fg", telescope.live_grep)
+	map("n", "<leader>fb", telescope.buffers)
+	map("n", "<leader>fh", telescope.help_tags)
+	map("n", "<leader>fs", git_status)
+	map("n", "<leader>fc", git_commits)
 else
-	print("Telescope not found") -- 如果插件未找到，打印提示信息
+	print("Telescope not found")
 end
 
--- 保存文件
+-- Core
 map("n", "<leader>w", "<CMD>update<CR>")
+map("n", "<leader>cc", "<CMD>CodexToggle<CR>")
 
--- 退出 Neovim
 map("n", "<leader>q", "<CMD>q<CR>")
 
--- 退出插入模式
+-- Insert
 map("i", "jk", "<ESC>")
 
--- 窗口操作
-map("n", "<leader>n", "<CMD>vsplit<CR>") -- 垂直分割窗口
-map("n", "<leader>p", "<CMD>split<CR>") -- 水平分割窗口
+-- Windows
+map("n", "<leader>n", "<CMD>vsplit<CR>")
+map("n", "<leader>p", "<CMD>split<CR>")
 
--- NeoTree 文件管理
-map("n", "<leader>e", "<CMD>Neotree toggle<CR>") -- 切换 NeoTree 界面
-map("n", "<leader>o", "<CMD>Neotree focus<CR>") -- 焦点切换到 NeoTree 界面
-map("n", "<leader>er", "<CMD>Neotree reveal<CR>") -- 在 NeoTree 中定位当前文件
+-- Explorer
+map("n", "<leader>ee", "<CMD>Neotree toggle<CR>")
+map("n", "<leader>eo", "<CMD>Neotree focus<CR>")
+map("n", "<leader>er", "<CMD>Neotree reveal<CR>")
 
--- 缓冲区导航
-map("n", "<TAB>", "<CMD>bnext<CR>") -- 切换到下一个缓冲区
-map("n", "<S-TAB>", "<CMD>bprevious<CR>") -- 切换到上一个缓冲区
+-- Buffers
+map("n", "<TAB>", "<CMD>bnext<CR>")
+map("n", "<S-TAB>", "<CMD>bprevious<CR>")
 
--- 终端操作
-map("n", "<leader>th", "<CMD>ToggleTerm size=10 direction=horizontal<CR>") -- 水平终端
-map("n", "<leader>tv", "<CMD>ToggleTerm size=80 direction=vertical<CR>") -- 垂直终端
-map("t", "<Esc>", [[<C-\><C-n>]]) --退出到普通模式
-map("t", "<leader>q", [[<C-\><C-n>:q<CR>]]) --关闭终端
+-- Terminal
+map("n", "<leader>th", "<CMD>ToggleTerm size=10 direction=horizontal<CR>")
+map("n", "<leader>tv", "<CMD>ToggleTerm size=80 direction=vertical<CR>")
+map("t", "<Esc>", [[<C-\><C-n>]])
+map("t", "<leader>q", [[<C-\><C-n>:q<CR>]])
 
--- Git 操作
-map("n", "]h", "<CMD>Gitsigns next_hunk<CR>") -- 下一个 hunk
-map("n", "[h", "<CMD>Gitsigns prev_hunk<CR>") -- 上一个 hunk
-map("n", "<leader>hp", "<CMD>Gitsigns preview_hunk<CR>") -- 预览 hunk
-map("n", "<leader>hb", "<CMD>Gitsigns toggle_current_line_blame<CR>") -- 当前行 blame
+-- Git
+map("n", "]h", "<CMD>Gitsigns next_hunk<CR>")
+map("n", "[h", "<CMD>Gitsigns prev_hunk<CR>")
+map("n", "<leader>hp", "<CMD>Gitsigns preview_hunk<CR>")
+map("n", "<leader>hb", "<CMD>Gitsigns toggle_current_line_blame<CR>")
+map("n", "<leader>lg", "<CMD>LazyGit<CR>")
 
--- Markdown 预览
--- map("n", "<leader>m", "<CMD>MarkdownPreview<CR>") -- 启动 Markdown 预览
--- map("n", "<leader>mn", "<CMD>MarkdownPreviewStop<CR>") -- 停止 Markdown 预览
+-- Trouble
+map("n", "<leader>xx", "<CMD>Trouble diagnostics toggle<CR>")
+map("n", "<leader>xX", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>")
+map("n", "<leader>xq", "<CMD>Trouble qflist toggle<CR>")
+map("n", "<leader>xl", "<CMD>Trouble loclist toggle<CR>")
+map("n", "<leader>st", "<CMD>TodoTelescope<CR>")
+map("n", "<leader>ss", "<CMD>lua require('persistence').load()<CR>")
+map("n", "<leader>sl", "<CMD>lua require('persistence').load({ last = true })<CR>")
+map("n", "<leader>sd", "<CMD>lua require('persistence').stop()<CR>")
 
--- 窗口导航
-map("n", "<C-h>", "<C-w>h") -- 切换到左侧窗口
-map("n", "<C-l>", "<C-w>l") -- 切换到右侧窗口
-map("n", "<C-k>", "<C-w>k") -- 切换到上方窗口
-map("n", "<C-j>", "<C-w>j") -- 切换到下方窗口
+-- Markdown
+map("n", "<leader>mp", "<CMD>MarkdownPreview<CR>")
+map("n", "<leader>ms", "<CMD>MarkdownPreviewStop<CR>")
 
--- 窗口大小调整
-map("n", "<C-Left>", "<C-w><") -- 向左调整窗口大小
-map("n", "<C-Right>", "<C-w>>") -- 向右调整窗口大小
-map("n", "<C-Up>", "<C-w>+") -- 向上调整窗口大小
-map("n", "<C-Down>", "<C-w>-") -- 向下调整窗口大小
+if flash_status then
+	map({ "n", "x", "o" }, "s", function()
+		flash.jump()
+	end)
+	map({ "n", "x", "o" }, "S", function()
+		flash.treesitter()
+	end)
+	map("o", "r", function()
+		flash.remote()
+	end)
+end
 
--- LazyGit 集成
--- map("n", "<leader>lg", "<CMD>LazyGit<CR>") -- 打开 LazyGit 界面
+-- Window nav
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-l>", "<C-w>l")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-j>", "<C-w>j")
+
+-- Window resize
+map("n", "<C-Left>", "<C-w><")
+map("n", "<C-Right>", "<C-w>>")
+map("n", "<C-Up>", "<C-w>+")
+map("n", "<C-Down>", "<C-w>-")
