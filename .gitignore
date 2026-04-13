@@ -1,0 +1,7 @@
+.DS_Store
+.nvimlog
+*.log
+*.tmp
+*.swp
+*.swo
+Session.vim
