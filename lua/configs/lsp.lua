@@ -1,14 +1,24 @@
--- 尝试加载 lspconfig 插件，如果加载失败则直接返回
-local status, nvim_lsp = pcall(require, "lspconfig")
-if not status then
-	return
-end
-
--- 加载 Neovim 内置的 LSP 协议模块
-local protocol = require("vim.lsp.protocol")
-
 -- 在 LSP 附加到缓冲区时调用的函数
 local on_attach = function(client, bufnr)
+	local map = function(mode, lhs, rhs)
+		vim.keymap.set(mode, lhs, rhs, { silent = true, buffer = bufnr })
+	end
+
+	map("n", "gD", vim.lsp.buf.declaration)
+	map("n", "gd", vim.lsp.buf.definition)
+	map("n", "gi", vim.lsp.buf.implementation)
+	map("n", "gr", vim.lsp.buf.references)
+	map("n", "K", vim.lsp.buf.hover)
+	map("n", "<leader>rn", vim.lsp.buf.rename)
+	map("n", "<leader>ca", vim.lsp.buf.code_action)
+	map("n", "<leader>lf", function()
+		vim.lsp.buf.format({ async = false })
+	end)
+	map("n", "[d", vim.diagnostic.goto_prev)
+	map("n", "]d", vim.diagnostic.goto_next)
+	map("n", "<leader>ld", vim.diagnostic.open_float)
+	map("n", "<leader>lq", vim.diagnostic.setloclist)
+
 	-- 如果 LSP 服务器支持格式化功能，则在保存时自动格式化
 	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_create_autocmd("BufWritePre", {
@@ -26,38 +36,17 @@ end
 -- 设置 LSP 客户端的能力，例如补全功能
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
--- TypeScript 的 LSP 配置
-nvim_lsp.ts_ls.setup({
-	on_attach = on_attach, -- 当 LSP 服务器连接到缓冲区时调用 on_attach 函数
-	capabilities = capabilities, -- 设置 LSP 客户端的能力
-})
+local servers = {
+	"ts_ls",
+	"pyright",
+	"gopls",
+	"clangd",
+}
 
--- Python 的 LSP 配置
-nvim_lsp.pyright.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
--- Go 的 LSP 配置
-nvim_lsp.gopls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
--- -- CSS 的 LSP 配置
--- nvim_lsp.cssls.setup({
---     on_attach = on_attach,
---     capabilities = capabilities,
--- })
-
--- -- Tailwind CSS 的 LSP 配置
--- nvim_lsp.tailwindcss.setup({
---     on_attach = on_attach,
---     capabilities = capabilities,
--- })
-
--- Clangd (C/C++ language server)
-nvim_lsp.clangd.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
+for _, server in ipairs(servers) do
+	vim.lsp.config(server, {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
+	vim.lsp.enable(server)
+end

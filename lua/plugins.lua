@@ -75,7 +75,7 @@ return require("packer").startup(function(use)
 	use("onsails/lspkind-nvim") -- LSP 图标
 	use({
 		"L3MON4D3/LuaSnip",
-		tag = "v<CurrentMajor>.*", -- 使用最新的主要版本
+		tag = "v2.*", -- 锁定 LuaSnip 当前主版本，避免 packer 的无效通配符警告
 	})
 
 	-- 自动补全插件
@@ -93,7 +93,7 @@ return require("packer").startup(function(use)
 
 	-- LSP 诊断、代码操作等
 	use({
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		config = function()
 			require("configs.null-ls") -- 使用自定义的 null-ls 配置
 		end,

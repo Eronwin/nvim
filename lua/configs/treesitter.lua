@@ -3,7 +3,11 @@ if not status then
     return
 end
 
+local parser_install_dir = vim.fn.stdpath("data") .. "/treesitter"
+vim.opt.runtimepath:append(parser_install_dir)
+
 ts.setup({
+    parser_install_dir = parser_install_dir,
     highlight = {
         enable = true,
         additional_vim_regex_highlighting = false,
