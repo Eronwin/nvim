@@ -1,19 +1,19 @@
-# Neovim Reference
+# Neovim 参考
 
 ## Meta
 
-- language: `en`
-- leader: `Space`
-- plugin manager: `packer.nvim`
+- language: `zh-CN`
+- leader：`Space`
+- 插件管理：`packer.nvim`
 
-keymap sources:
+键位来源：
 
 - [lua/maps.lua](/Users/kekao/.config/nvim/lua/maps.lua:1)
 - [lua/configs/lsp.lua](/Users/kekao/.config/nvim/lua/configs/lsp.lua:1)
 - [lua/configs/cmp.lua](/Users/kekao/.config/nvim/lua/configs/cmp.lua:1)
 - [lua/configs/toggleterm.lua](/Users/kekao/.config/nvim/lua/configs/toggleterm.lua:1)
 
-config entrypoints:
+配置入口：
 
 - [init.lua](/Users/kekao/.config/nvim/init.lua:1)
 - [lua/settings.lua](/Users/kekao/.config/nvim/lua/settings.lua:1)
@@ -21,12 +21,12 @@ config entrypoints:
 
 ## Core
 
-- line numbers: on
-- relative numbers: on
-- clipboard: `unnamedplus`
-- indent: `tabstop=4`, `shiftwidth=4`
-- split below: on
-- split right: on
+- 行号：开启
+- 相对行号：开启
+- 剪贴板：`unnamedplus`
+- 缩进：`tabstop=4`, `shiftwidth=4`
+- `splitbelow`：开启
+- `splitright`：开启
 
 ## Plugin Set
 
@@ -71,24 +71,24 @@ config entrypoints:
 
 ## Commands
 
-plugin management:
+插件管理：
 
 - `:PackerSync`
 - `:PackerCompile`
 - `:PackerStatus`
 
-lsp / tooling:
+LSP / tooling：
 
 - `:Mason`
 - `:LspInfo`
 - `:checkhealth`
 
-treesitter:
+Treesitter：
 
 - `:TSInstall <lang>`
 - `:TSUpdate`
 
-git:
+Git：
 
 - `:Gitsigns preview_hunk`
 - `:Gitsigns next_hunk`
@@ -101,72 +101,72 @@ git:
 
 | key | action |
 | --- | --- |
-| `Space ff` | Telescope files |
-| `Space fg` | Telescope grep |
+| `Space ff` | Telescope 文件搜索 |
+| `Space fg` | Telescope 全局搜索 |
 | `Space fb` | Telescope buffers |
 | `Space fh` | Telescope help |
 | `Space fs` | Telescope git status |
 | `Space fc` | Telescope git commits |
-| `Space w` | write buffer |
-| `Space cc` | toggle Codex panel |
-| `Space q` | quit window |
-| `Space n` | vertical split |
-| `Space p` | horizontal split |
-| `Space ee` | toggle Neo-tree |
-| `Space eo` | focus Neo-tree |
-| `Space er` | reveal current file in Neo-tree |
-| `Tab` | next buffer |
-| `Shift-Tab` | previous buffer |
-| `Space th` | horizontal terminal |
-| `Space tv` | vertical terminal |
-| `]h` | next hunk |
-| `[h` | previous hunk |
-| `Space hp` | preview hunk |
-| `Space hb` | toggle line blame |
+| `Space w` | 保存 buffer |
+| `Space cc` | 切换 Codex 面板 |
+| `Space q` | 关闭窗口 |
+| `Space n` | 垂直分屏 |
+| `Space p` | 水平分屏 |
+| `Space ee` | 切换 Neo-tree |
+| `Space eo` | 聚焦 Neo-tree |
+| `Space er` | 在 Neo-tree 中定位当前文件 |
+| `Tab` | 下一个 buffer |
+| `Shift-Tab` | 上一个 buffer |
+| `Space th` | 水平终端 |
+| `Space tv` | 垂直终端 |
+| `]h` | 下一个 hunk |
+| `[h` | 上一个 hunk |
+| `Space hp` | 预览 hunk |
+| `Space hb` | 切换当前行 blame |
 | `Space lg` | LazyGit |
 | `Space st` | Todo Telescope |
-| `Space ss` | restore session |
-| `Space sl` | restore last session |
-| `Space sd` | stop session persistence |
+| `Space ss` | 恢复会话 |
+| `Space sl` | 恢复上一个会话 |
+| `Space sd` | 停止会话持久化 |
 | `Space xx` | Trouble diagnostics |
 | `Space xX` | Trouble diagnostics, current buffer |
 | `Space xq` | Trouble quickfix |
 | `Space xl` | Trouble location list |
-| `Space mp` | Markdown preview start |
-| `Space ms` | Markdown preview stop |
+| `Space mp` | 启动 Markdown 预览 |
+| `Space ms` | 停止 Markdown 预览 |
 | `s` | Flash jump |
 | `S` | Flash Treesitter jump |
-| `Ctrl-h` | window left |
-| `Ctrl-j` | window down |
-| `Ctrl-k` | window up |
-| `Ctrl-l` | window right |
-| `Ctrl-Left` | resize left |
-| `Ctrl-Right` | resize right |
-| `Ctrl-Up` | resize up |
-| `Ctrl-Down` | resize down |
-| `F7` | toggle floating terminal |
+| `Ctrl-h` | 窗口左移 |
+| `Ctrl-j` | 窗口下移 |
+| `Ctrl-k` | 窗口上移 |
+| `Ctrl-l` | 窗口右移 |
+| `Ctrl-Left` | 向左缩放窗口 |
+| `Ctrl-Right` | 向右缩放窗口 |
+| `Ctrl-Up` | 向上缩放窗口 |
+| `Ctrl-Down` | 向下缩放窗口 |
+| `F7` | 切换浮动终端 |
 
 ### Insert
 
 | key | action |
 | --- | --- |
-| `jk` | normal mode |
-| `Ctrl-Space` | trigger completion |
-| `Ctrl-d` | completion docs up |
-| `Ctrl-f` | completion docs down |
-| `Ctrl-e` | close completion |
-| `Enter` | confirm completion |
+| `jk` | 回到 normal mode |
+| `Ctrl-Space` | 触发补全 |
+| `Ctrl-d` | 补全文档上翻 |
+| `Ctrl-f` | 补全文档下翻 |
+| `Ctrl-e` | 关闭补全 |
+| `Enter` | 确认补全 |
 
 ### Terminal
 
 | key | action |
 | --- | --- |
 | `Esc` | terminal-normal mode |
-| `Space q` | close terminal window |
+| `Space q` | 关闭终端窗口 |
 
 ### LSP Buffer
 
-buffer-local after LSP attach:
+仅在 LSP attach 后有效：
 
 | key | action |
 | --- | --- |
@@ -187,7 +187,7 @@ buffer-local after LSP attach:
 
 ### Which-key
 
-leader groups:
+leader 分组：
 
 - `c` codex / code
 - `e` explorer
@@ -201,41 +201,41 @@ leader groups:
 
 ### Codex
 
-- `Space cc` toggles the Codex panel
-- requires local `codex` CLI
+- `Space cc` 切换 Codex 面板
+- 依赖本机 `codex` CLI
 
 ### Noice / Notify / Nui
 
-- `noice.nvim`: cmdline, messages, LSP UI
-- `nvim-notify`: notifications
-- `nui.nvim`: shared UI dependency
+- `noice.nvim`：命令行、消息、LSP UI
+- `nvim-notify`：通知显示
+- `nui.nvim`：共享 UI 依赖
 
 ### Neo-tree
 
-- dotfiles: shown
-- `.gitignore`: hidden
-- `node_modules`: hidden
-- follow current file: on
-- git status: on
-- diagnostics: on
+- dotfiles：显示
+- `.gitignore`：隐藏
+- `node_modules`：隐藏
+- follow current file：开启
+- git status：开启
+- diagnostics：开启
 
-config:
+配置：
 
 - [lua/configs/neotree.lua](/Users/kekao/.config/nvim/lua/configs/neotree.lua:1)
 
 ### Treesitter Context
 
-- pins current syntax context at top of window
+- 顶部固定当前语法上下文
 
 ### Todo Comments
 
-- `Space st` searches `TODO`, `FIXME`, `NOTE`
+- `Space st` 搜索 `TODO`、`FIXME`、`NOTE`
 
 ### Persistence
 
-- `Space ss` restore cwd session
-- `Space sl` restore last session
-- `Space sd` disable persistence for current run
+- `Space ss` 恢复当前目录会话
+- `Space sl` 恢复上一个会话
+- `Space sd` 停止当前会话持久化
 
 ### Flash
 
@@ -244,50 +244,50 @@ config:
 
 ### Markdown Preview
 
-- lazy-loaded on markdown filetype
-- `Space mp` start
-- `Space ms` stop
+- 仅在 markdown filetype 下懒加载
+- `Space mp` 启动
+- `Space ms` 停止
 
 ### Completion
 
-sources:
+sources：
 
 - LSP
 - buffer
 - path
 
-config:
+配置：
 
 - [lua/configs/cmp.lua](/Users/kekao/.config/nvim/lua/configs/cmp.lua:1)
 
 ### Surround
 
-default mappings, not user-defined:
+默认键位，非自定义映射：
 
-- `ysiw"` add quotes around word
-- `ysiw)` add parens around word
-- `ds"` delete quotes
-- `cs"'` change `"` to `'`
-- visual `S` add surround
+- `ysiw"` 给单词加引号
+- `ysiw)` 给单词加括号
+- `ds"` 删除引号
+- `cs"'` 把 `"` 改成 `'`
+- visual `S` 添加 surround
 
 ### Comment
 
-default mappings, not user-defined:
+默认键位，非自定义映射：
 
-- `gcc` toggle current line
-- `gc{motion}` toggle motion
-- visual `gc` toggle selection
+- `gcc` 切换当前行注释
+- `gc{motion}` 切换 motion 注释
+- visual `gc` 切换选区注释
 
 ### LSP
 
-enabled servers:
+启用服务：
 
 - `ts_ls`
 - `pyright`
 - `gopls`
 - `clangd`
 
-Mason install set:
+Mason 安装集：
 
 - `cssls`
 - `eslint`
@@ -296,43 +296,43 @@ Mason install set:
 - `tailwindcss`
 - `yamlls`
 
-config:
+配置：
 
 - [lua/configs/lsp.lua](/Users/kekao/.config/nvim/lua/configs/lsp.lua:1)
 - [lua/configs/mason-lsp.lua](/Users/kekao/.config/nvim/lua/configs/mason-lsp.lua:1)
 
 ### Formatting
 
-formatter stack:
+formatter stack：
 
 - `stylua`
 - `black`
 - `prettierd`
 - `prettier`
 
-save path:
+save path：
 
 - `conform.nvim`
-- LSP fallback enabled
+- 启用 LSP fallback
 
-config:
+配置：
 
 - [lua/configs/conform.lua](/Users/kekao/.config/nvim/lua/configs/conform.lua:1)
 
 ### Lint
 
-linters:
+linters：
 
 - `eslint_d`
 - `pylint`
 - `shellcheck`
 
-trigger:
+trigger：
 
 - `BufEnter`
 - `BufWritePost`
 - `InsertLeave`
 
-config:
+配置：
 
 - [lua/configs/lint.lua](/Users/kekao/.config/nvim/lua/configs/lint.lua:1)
